@@ -5,7 +5,15 @@ search_llm_actions provides a simple template to collect action trajectories fro
 ## 🚀Installation🚀
 
 ```bash
-pip install search_llm_actions
+git clone git@github.com:bebetterest/search_llm_actions.git
+cd search_llm_actions
+pip install -r requirements.txt
+
+pip install .
+# # edit code
+# pip install -e .
+
+# pip install search_llm_actions
 ```
 
 ## 🧐Customization🧐
