@@ -97,7 +97,7 @@ class Search():
         )
 
 
-    def take_parallel_actions(self, node_ids: str, width: int = 1) -> List[Dict[str, Any]]:
+    def take_parallel_actions(self, node_ids: str, width: int) -> List[Dict[str, Any]]:
         # You have to override this function.
         messages = [{
             "role": "user",
@@ -120,7 +120,7 @@ class Search():
         else:
             return 0.0
 
-    def detect_end(self, node_ids: str, max_depth: int = 10) -> bool:
+    def detect_end(self, node_ids: str, max_depth: int) -> bool:
         # You have to override this function.
         node = self.nodes[node_ids]
         depth = len(node_ids.split("."))
@@ -160,7 +160,7 @@ class Search():
                 return next_node_ids, True
         return node_ids, False
 
-    def expansion(self, node_ids, expansion_width = 1):
+    def expansion(self, node_ids, expansion_width):
         node = self.nodes[node_ids]
         assert node.node_info["end_flag"] == False, "The node is an end node, so it can't be expanded."
         parallel_children_stats = self.take_parallel_actions(node_ids, expansion_width)

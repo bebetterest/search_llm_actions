@@ -23,6 +23,7 @@ load_dotenv()
 
 def get_logger(name: str, log_file: str = "caller.log") -> logging.Logger:
     logger = logging.getLogger(name)
+    logger.propagate = False
     logger.setLevel(logging.DEBUG)
     formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
     fh = logging.FileHandler(log_file)
@@ -185,7 +186,7 @@ class TogetherCaller(Caller):
             api_key_list: List[str] =\
                 [
                     _.strip()
-                    for _ in os.environ["TOGETHER_API_KEY"].strip().split(" ")
+                    for _ in os.environ.get("TOGETHER_API_KEY", "").strip().split(" ")
                 ],
             engine: str = "meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo",
             sampling_params: Dict = {
