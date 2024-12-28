@@ -22,7 +22,9 @@ def run_shell_script(script_path) -> Tuple[bool, str]:
             ['bash', script_path], 
             capture_output=True,
             text=True,
-            check=True
+            check=True,
+            # be careful, this will create a new session
+            start_new_session=True
         )
         return True, result.stdout
     except subprocess.CalledProcessError as e:
